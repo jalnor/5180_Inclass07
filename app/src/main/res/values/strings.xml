@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Inclass07</string>
+    <string name="app_name">Inclass03</string>
+    <string name="tv_avatar_text">My Avatar</string>
+    <string name="tv_department">Department</string>
+    <string name="rb1">CS</string>
+    <string name="rb2">SIS</string>
+    <string name="rb3">BIO</string>
+    <string name="rb4">Other</string>
+    <string name="btn1">Save</string>
+    <string name="btn2">Edit</string>
+    <string name="tv_name">Name:</string>
+    <string name="tv_studentid">Student Id:</string>
+    <string name="title3">Display My Profile</string>
+    <string name="title2">Select Avatar</string>
+    <string name="title1">My Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
