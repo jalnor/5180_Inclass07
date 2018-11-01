@@ -1,6 +1,8 @@
 package com.example.gameon.inclass07;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     String firstName;
     String lastName;
     int studentId;

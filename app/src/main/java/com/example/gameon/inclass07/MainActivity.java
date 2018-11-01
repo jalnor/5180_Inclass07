@@ -25,7 +25,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, AvatarSelector.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, AvatarSelector.OnFragmentInteractionListener, DisplayProfile.OnFragmentInteractionListener {
 
     private User user;
     private String avatar;
@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 //        getFragmentManager().beginTransaction()
 //                .replace(R.id.linView, new MainFragment(), "tag")
 //                .commit();
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

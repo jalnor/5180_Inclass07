@@ -137,15 +137,16 @@ public class MainFragment extends Fragment  {
             User user = new User();
 
             //get information
-            TextInputLayout firstName = v.findViewById(R.id.textInputLayout3);
-            TextInputLayout lastName = v.findViewById(R.id.textInputLayout2);
-            TextInputLayout studentID = v.findViewById(R.id.textInputLayout4);
-            RadioGroup radioGroup = v.findViewById(R.id.radioGroup);
+            TextInputLayout firstName = getActivity().findViewById(R.id.textInputLayout3);
+            Log.d("main", "This is the et " + firstName);
+            TextInputLayout lastName = getActivity().findViewById(R.id.textInputLayout2);
+            TextInputLayout studentID = getActivity().findViewById(R.id.textInputLayout4);
+            RadioGroup radioGroup = getActivity().findViewById(R.id.radioGroup);
 
             String fName = firstName.getEditText().getText().toString();
             String lName = lastName.getEditText().getText().toString();
             String sID = studentID.getEditText().getText().toString();
-            String dep = ((RadioButton) v.findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
+            String dep = ((RadioButton) getActivity().findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
 
             Toast toast = Toast.makeText(getContext(),
                     "Your student ID is Invalid",
@@ -187,6 +188,10 @@ public class MainFragment extends Fragment  {
                     toast.show();
                     return;
                 }
+
+
+
+
             }catch(
             NumberFormatException e)
 
@@ -199,8 +204,20 @@ public class MainFragment extends Fragment  {
                 user.setFirstName(fName);
                 user.setLastName(lName);
                 user.setDepartment(dep);
-            // user.setProfile();
+                DisplayProfile f = new DisplayProfile();
+                final Bundle u = new Bundle();
+                u.putSerializable("user",  user);
+                f.setArguments(u);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.linView, f, "tag_profile")
+                        .addToBackStack(null)
+                        .commit();
             }
+
+
+
+
+
         });
 
             return v;
