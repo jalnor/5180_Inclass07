@@ -64,17 +64,17 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     }
 
     @Override
-    public String sendAvatar(String avatar) {
+    public void sendAvatar(String avatar) {
 
         this.avatar = avatar;
-        Fragment f = new MainFragment();
-        Bundle b = new Bundle();
-        b.putString("avatar", avatar);
-        f.setArguments(b);
-        Log.d("main", "Did I amke it here?");
-        getFragmentManager().beginTransaction()
-                .replace(R.id.linView, new MainFragment(), "first")
-                .commit();
-        return null;
+//        Fragment f = new MainFragment();
+//        Bundle b = new Bundle();
+//        b.putString("avatar", avatar);
+//        f.setArguments(b);
+//        Log.d("main", "Did I amke it here?");
+//        getFragmentManager().beginTransaction()
+//                .replace(R.id.linView, new MainFragment(), "tag")
+//                .commit();
+
     }
 }

@@ -69,14 +69,17 @@ public class MainFragment extends Fragment  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //String image = getArguments().getString("avatar");
+        //Log.d("N", "This is in the onCreate after image " + image);
         if (getArguments() != null) {
 
             mParam1 = getArguments().getString("avatar");
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getInt("image");
-            Log.d("N", "This is in the onCreate " + mParam3);
-        }
 
+        }
+        Log.d("main", "THis is it " + mParam1);
         if ( mParam1 != null ) {
             ImageView iv = getActivity().findViewById(R.id.imageView);
             iv.setImageResource(R.drawable.avatar_f_1);
@@ -104,8 +107,26 @@ public class MainFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        int image = 0;
         v = inflater.inflate(R.layout.fragment_main,container,false);
+        try {
+            Log.d("N", "This is in the onCreateView " + mParam1 + ", " + savedInstanceState.getString("avatar"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         if (getArguments() != null) {
+
+            image = getArguments().getInt("avatar");
+            ImageView iv = v.findViewById(R.id.imageView);
+            iv.setImageResource(image);
+
+        }
+        Log.d("main", "THis is it " + mParam1);
+//        if ( image > 0 ) {
+//
+//        }
+        // Inflate the layout for this fragment
+
 
         v.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override

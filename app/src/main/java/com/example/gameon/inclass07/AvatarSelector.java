@@ -67,58 +67,90 @@ public class AvatarSelector extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         getActivity().findViewById(R.id.f1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("image", "This is the image id " + R.drawable.avatar_f_1);
-
-                mListener.sendAvatar("avatar_f_1");
-//               MainFragment f = new MainFragment();
-//
-//               Bundle image = new Bundle();
-//               image.putInt("avatar", R.drawable.avatar_f_1);
-//               f.setArguments(image);
-//
-//
-//               getFragmentManager().beginTransaction()
-//                       .replace(R.id.linView, f, "Main")
-//                       .commit();
+                //mListener.sendAvatar("avatar_f_1");
+                MainFragment f = (MainFragment) getFragmentManager().findFragmentByTag("tag_main");
+                final Bundle image = new Bundle();
+                image.putInt("avatar", R.drawable.avatar_f_1);
+                f.setArguments(image);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.linView, f, "tag_main")
+                        .addToBackStack(null)
+                        .commit();
            }
-
         });
 
         getActivity().findViewById(R.id.f2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainFragment f = (MainFragment) getFragmentManager().findFragmentByTag("tag_main");
+                final Bundle image = new Bundle();
+                image.putInt("avatar", R.drawable.avatar_f_2);
+                f.setArguments(image);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.linView, f, "tag_main")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         getActivity().findViewById(R.id.f3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainFragment f = (MainFragment) getFragmentManager().findFragmentByTag("tag_main");
+                final Bundle image = new Bundle();
+                image.putInt("avatar", R.drawable.avatar_f_3);
+                f.setArguments(image);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.linView, f, "tag_main")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         getActivity().findViewById(R.id.m1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainFragment f = (MainFragment) getFragmentManager().findFragmentByTag("tag_main");
+                final Bundle image = new Bundle();
+                image.putInt("avatar", R.drawable.avatar_m_1);
+                f.setArguments(image);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.linView, f, "tag_main")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         getActivity().findViewById(R.id.m2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainFragment f = (MainFragment) getFragmentManager().findFragmentByTag("tag_main");
+                final Bundle image = new Bundle();
+                image.putInt("avatar", R.drawable.avatar_m_2);
+                f.setArguments(image);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.linView, f, "tag_main")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         getActivity().findViewById(R.id.m3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainFragment f = (MainFragment) getFragmentManager().findFragmentByTag("tag_main");
+                final Bundle image = new Bundle();
+                image.putInt("avatar", R.drawable.avatar_m_3);
+                f.setArguments(image);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.linView, f, "tag_main")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -140,12 +172,12 @@ public class AvatarSelector extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -165,6 +197,6 @@ public class AvatarSelector extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        String sendAvatar(String avatar);
+        void sendAvatar(String avatar);
     }
 }
