@@ -73,18 +73,18 @@ public class MainFragment extends Fragment  {
 
         //String image = getArguments().getString("avatar");
         //Log.d("N", "This is in the onCreate after image " + image);
-        if (getArguments() != null) {
-
-            mParam1 = getArguments().getString("avatar");
-            mParam2 = getArguments().getString(ARG_PARAM2);
-            mParam3 = getArguments().getInt("image");
-
-        }
-        Log.d("main", "THis is it " + mParam1);
-        if ( mParam1 != null ) {
-            ImageView iv = getActivity().findViewById(R.id.imageView);
-            iv.setImageResource(R.drawable.avatar_f_1);
-        }
+//        if (getArguments() != null) {
+//
+//            mParam1 = getArguments().getString("avatar");
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//            mParam3 = getArguments().getInt("image");
+//
+//        }
+//        Log.d("main", "THis is it " + mParam1);
+//        if ( mParam1 != null ) {
+//            ImageView iv = getActivity().findViewById(R.id.imageView);
+//            iv.setImageResource(R.drawable.avatar_f_1);
+//        }
     }
 
     @Override
@@ -100,6 +100,7 @@ public class MainFragment extends Fragment  {
         getActivity().findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mListener.selectAvatar();
             }
         });
@@ -122,7 +123,7 @@ public class MainFragment extends Fragment  {
             iv.setImageResource(image);
 
         }
-        Log.d("main", "THis is it " + mParam1);
+        //Log.d("main", "THis is it " + mParam1);
 //        if ( image > 0 ) {
 //
 //        }
@@ -134,98 +135,116 @@ public class MainFragment extends Fragment  {
             public void onClick(View v) {
 
 
+                User user = new User();
 
-            User user = new User();
+                //get information
+                TextInputLayout firstName = getActivity().findViewById(R.id.textInputLayout3);
+                Log.d("main", "This is the et " + firstName);
+                TextInputLayout lastName = getActivity().findViewById(R.id.textInputLayout2);
+                TextInputLayout studentID = getActivity().findViewById(R.id.textInputLayout4);
+                RadioGroup radioGroup = getActivity().findViewById(R.id.radioGroup);
 
-            //get information
-            TextInputLayout firstName = getActivity().findViewById(R.id.textInputLayout3);
-            Log.d("main", "This is the et " + firstName);
-            TextInputLayout lastName = getActivity().findViewById(R.id.textInputLayout2);
-            TextInputLayout studentID = getActivity().findViewById(R.id.textInputLayout4);
-            RadioGroup radioGroup = getActivity().findViewById(R.id.radioGroup);
-
-            String fName = firstName.getEditText().getText().toString();
-            String lName = lastName.getEditText().getText().toString();
-            String sID = studentID.getEditText().getText().toString();
-            String dep = ((RadioButton) getActivity().findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
-
-            Toast toast = Toast.makeText(getContext(),
-                    "Your student ID is Invalid",
-                    Toast.LENGTH_SHORT);
-
-            if(fName ==""||fName ==null)
-
-            {
-                //error our firstname
-                Log.e("Main activity:", "First Name is not set");
-
-            }else if(lName ==""||lName ==null)
-
-            {
-                //error our lastName
-                Log.e("Main activity:", "Last Name is not set");
-
-            }else if(sID ==""||sID ==null)
-
-            {
-                System.out.print(studentID);
-                //error our studentID
-                Log.e("Main activity:", "Student Id is not set");
-
-            }else if(dep ==""||dep ==null)
-
-            {
-                //error out department
-                Log.e("Main activity:", "Department is not set");
-            }
-
-                try
-
-            {
-                int tempID = Integer.parseInt(sID);
-                if (tempID > 0 && sID.length() == 9) {
-                    user.setStudentId(tempID);
-                } else {
-                    toast.show();
-                    return;
+                String fName = firstName.getEditText().getText().toString();
+                String lName = lastName.getEditText().getText().toString();
+                String sID = studentID.getEditText().getText().toString();
+                String dep = null;
+                if ( ((RadioButton) getActivity().findViewById(radioGroup.getCheckedRadioButtonId())) != null ) {
+                    dep = ((RadioButton) getActivity().findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
                 }
 
 
+                String reg = "/^\\d{9}";
+                Log.d("main", "This is the fname " + fName);
+                if (fName.isEmpty() || fName == null || lName.isEmpty() || lName == null || sID.isEmpty() || sID == null || sID.matches(reg)|| dep == "" || dep == null) {
+                    if (fName.isEmpty() || fName == null)
+
+                    {
+                        //error our firstname
+                        Toast toast = Toast.makeText(getContext(),
+                                "Your first name is Invalid",
+                                Toast.LENGTH_SHORT);
+                        toast.show();
+                        Log.e("Main activity:", "First Name is not set");
+
+                    } else if (lName.isEmpty() || lName == null)
+
+                    {
+                        //error our lastName
+                        Toast toast = Toast.makeText(getContext(),
+                                "Your last name is Invalid",
+                                Toast.LENGTH_SHORT);
+                        toast.show();
+                        Log.e("Main activity:", "Last Name is not set");
+
+                    } else if (sID.isEmpty() || sID == null || sID.matches(reg))
+
+                    {
+                        System.out.print(studentID);
+                        //error our studentID
+                        Toast toast = Toast.makeText(getContext(),
+                                "Your student ID is Invalid",
+                                Toast.LENGTH_SHORT);
+                        toast.show();
+                        Log.e("Main activity:", "Student Id is not set");
+
+                    } else if (dep == "" || dep == null)
+
+                    {
+                        //error out department
+                        Toast toast = Toast.makeText(getContext(),
+                                "Your dep is Invalid",
+                                Toast.LENGTH_SHORT);
+                        toast.show();
+                        Log.e("Main activity:", "Department is not set");
+                    }
+                } else {
+
+                    try
+
+                    {
+                        int tempID = Integer.parseInt(sID);
+                        if (tempID > 0 && sID.length() == 9) {
+                            user.setStudentId(tempID);
+                        } else {
+                            Toast toast = Toast.makeText(getContext(),
+                                    "Your student ID is Invalid",
+                                    Toast.LENGTH_SHORT);
+                            toast.show();
+                            return;
+                        }
 
 
-            }catch(
-            NumberFormatException e)
+                    } catch (
+                            NumberFormatException e)
 
-            {
-                // student Id invalid
-                toast.show();
-                Log.e("Main activity:", "Student Id is invalid");
+                    {
+                        // student Id invalid
+                        Toast toast = Toast.makeText(getContext(),
+                                "Your student ID is Invalid",
+                                Toast.LENGTH_SHORT);
+                        toast.show();
+                        Log.e("Main activity:", "Student Id is invalid");
+                    }
+                    ImageView iv = getActivity().findViewById(R.id.imageView);
+
+                    user.setFirstName(fName);
+                    user.setLastName(lName);
+                    user.setDepartment(dep);
+                    user.setProfile(image);
+
+                    DisplayProfile f = new DisplayProfile();
+                    final Bundle u = new Bundle();
+                    u.putSerializable("user", user);
+                    f.setArguments(u);
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.linView, f, "tag_profile")
+                            .addToBackStack(null)
+                            .commit();
+                }
             }
-                ImageView iv = getActivity().findViewById(R.id.imageView);
-
-                user.setFirstName(fName);
-                user.setLastName(lName);
-                user.setDepartment(dep);
-                user.setProfile(image);
-
-                DisplayProfile f = new DisplayProfile();
-                final Bundle u = new Bundle();
-                u.putSerializable("user",  user);
-                f.setArguments(u);
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.linView, f, "tag_profile")
-                        .addToBackStack(null)
-                        .commit();
-            }
-
-
-
-
-
         });
-
-            return v;
-        }
+        return v;
+    }
 
 
 

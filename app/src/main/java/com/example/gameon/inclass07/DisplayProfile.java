@@ -122,7 +122,6 @@ public class DisplayProfile extends Fragment {
                     f.setArguments(u);
                     getFragmentManager().beginTransaction()
                             .replace(R.id.linView, f, "tag_main")
-                            .addToBackStack(null)
                             .commit();
 
                 }
