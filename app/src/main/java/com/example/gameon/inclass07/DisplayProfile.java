@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,38 +76,40 @@ public class DisplayProfile extends Fragment {
 
             user = (User) getArguments().getSerializable("user");
 
-
-            ((TextView)v.findViewById(R.id.name)).setText(user.getFirstName() + user.getLastName());
-            ((TextView)v.findViewById(R.id.studentid)).setText("" + user.getStudentId());
-            ((TextView)v.findViewById(R.id.department)).setText(user.getDepartment());
-
-            ImageView img = (ImageView) v.findViewById(R.id.imageView2);
-            switch (user.getProfile()) {
-                case 1:
-                    img.setImageResource(R.drawable.avatar_f_1);
-                    break;
-
-                case 2:
-                    img.setImageResource(R.drawable.avatar_f_2);
-                    break;
-
-                case 3:
-                    img.setImageResource(R.drawable.avatar_f_3);
-                    break;
-
-                case 4:
-                    img.setImageResource(R.drawable.avatar_m_1);
-                    break;
-
-                case 5:
-                    img.setImageResource(R.drawable.avatar_m_2);
-                    break;
-
-                case 6:
-                    img.setImageResource(R.drawable.avatar_m_3);
-                    break;
-
+            if ( user != null ) {
+                Log.d("main", "THisis the profile picture " + user.getProfile());
+                ((TextView) v.findViewById(R.id.name)).setText(user.getFirstName() + user.getLastName());
+                ((TextView) v.findViewById(R.id.studentid)).setText("" + user.getStudentId());
+                ((TextView) v.findViewById(R.id.department)).setText(user.getDepartment());
+                ((ImageView) v.findViewById(R.id.imageView2)).setImageResource(user.getProfile());
             }
+//            ImageView img = (ImageView) v.findViewById(R.id.imageView2);
+//            switch (user.getProfile()) {
+//                case 1:
+//                    img.setImageResource(R.drawable.avatar_f_1);
+//                    break;
+//
+//                case 2:
+//                    img.setImageResource(R.drawable.avatar_f_2);
+//                    break;
+//
+//                case 3:
+//                    img.setImageResource(R.drawable.avatar_f_3);
+//                    break;
+//
+//                case 4:
+//                    img.setImageResource(R.drawable.avatar_m_1);
+//                    break;
+//
+//                case 5:
+//                    img.setImageResource(R.drawable.avatar_m_2);
+//                    break;
+//
+//                case 6:
+//                    img.setImageResource(R.drawable.avatar_m_3);
+//                    break;
+//
+//            }
 
 
             //edit button

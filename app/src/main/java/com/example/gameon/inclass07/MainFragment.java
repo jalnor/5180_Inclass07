@@ -34,6 +34,7 @@ public class MainFragment extends Fragment  {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "image";
     private static View v;
+    private int image = 0;
     private String avatar;
 
     // TODO: Rename and change types of parameters
@@ -107,10 +108,10 @@ public class MainFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        int image = 0;
+
         v = inflater.inflate(R.layout.fragment_main,container,false);
         try {
-            Log.d("N", "This is in the onCreateView " + mParam1 + ", " + savedInstanceState.getString("avatar"));
+            //Log.d("N", "This is in the onCreateView " + mParam1 + ", " + savedInstanceState.getString("avatar"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -200,10 +201,13 @@ public class MainFragment extends Fragment  {
                 toast.show();
                 Log.e("Main activity:", "Student Id is invalid");
             }
+                ImageView iv = getActivity().findViewById(R.id.imageView);
 
                 user.setFirstName(fName);
                 user.setLastName(lName);
                 user.setDepartment(dep);
+                user.setProfile(image);
+
                 DisplayProfile f = new DisplayProfile();
                 final Bundle u = new Bundle();
                 u.putSerializable("user",  user);
